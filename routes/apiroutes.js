@@ -9,7 +9,6 @@ const note = {};
 module.exports = function(app){
 
     app.get("/api/notes", function(req, res){
-
         return res.json(notes);
     });
     
@@ -17,20 +16,34 @@ module.exports = function(app){
         var newNote = req.body;
         notes.push(newNote);
         res.json(newNote);
-        let id;
+        var id;
         
 
-        for( let i = 0; i < notes.length; i++){
-            let id = notes.indexOf(notes[i]);
-            console.log(id)
+        for( var i = 0; i < notes.length; i++){
+            var id = notes.indexOf(notes[i]);
             notes[i].id = id;
-            console.log(notes);
+            
 
-            app.delete("/api/notes/" + id, function(req, res){
-    
+            app.delete("/api/notes/"+id, function(req, res){
+                console.log(req.params);
+                console.log(id);
+                console.log(newNote);
+                console.log("current array: "+ JSON.stringify(notes));
+                notes.splice(id, 1);
+                console.log("please delete " + newNote.title);
+                console.log("new notes array: " + JSON.stringify(notes))
+                return;
             });
+
+            
         }
     });
+
+
+    app.delete("api/notes", function(req, res) {
+        console.log(`Received a ${req.method} request from ${req.url}`)
+    });
+    
 
     
 
