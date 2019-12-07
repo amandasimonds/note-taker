@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -14,5 +11,10 @@
     "fs": "0.0.1-security",
     "mysql": "^2.16.0",
     "path": "^0.12.7"
+  },
+
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
