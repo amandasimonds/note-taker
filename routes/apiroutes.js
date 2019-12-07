@@ -12,12 +12,16 @@ module.exports = function(app){
         return res.json(notes);
     });
     
-    var id;
+    var id = 0;
 
     app.post("/api/notes", function(req, res){
         var note = req.body;
-        note.id = 1;
+        note.id = id++;
         notes.push(note);
+        fs.writeFile("../db/db.json", notes, function(err) {
+            if(err) {return console.log(err);}
+            console.log("The file was saved!");
+        }); 
         res.json(note);
     });
 
@@ -25,10 +29,21 @@ module.exports = function(app){
         var id = parseInt(req.params.id)
         console.log(req.params);
         console.log(req.params.id);
+
         console.log("current array: "+ JSON.stringify(notes));
-        notes.splice(id, 1);
+
+        var removeIndex = notes.map(function(note) { return note.id; }).indexOf(id);
+
+        // remove object
+        notes.splice(removeIndex, 1);
+
+        fs.writeFile("../db/db.json", notes, function(err) {
+            if(err) {return console.log(err);}
+            console.log("The file was saved!");
+        }); 
+        
         console.log("new notes array: " + JSON.stringify(notes))
-        res.redirect('/notes');
+        res.sendStatus(200).end();
     });
 
 //     for( var i = 0; i < notes.length; i++){
