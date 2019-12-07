@@ -1,7 +1,7 @@
 // Dependencies
 // ===========================================================
 var express = require("express");
-var db = require("/db/db.json");
+var db = require("./db/db.json");
 var fs = require("fs");
 var path = require("path");
 
@@ -19,8 +19,8 @@ var PORT = process.env.PORT || 3000;
 
 // Routes
 // ===========================================================
-require("/routes/htmlroutes")(app)
-require("/routes/apiRoutes")(app)
+require("./routes/htmlroutes")(app)
+require("./routes/apiRoutes")(app)
 
 
 // Listener
