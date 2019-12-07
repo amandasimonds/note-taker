@@ -16,11 +16,12 @@ module.exports = function(app){
 
     app.post("/api/notes", function(req, res){
         var note = req.body;
+        note.id = 1;
         notes.push(note);
         res.json(note);
     });
 
-    app.delete("/api/notes/:"+ id, function(req, res){
+    app.delete("/api/notes/:id" , function(req, res){
         var id = parseInt(req.params.id)
         console.log(req.params);
         console.log(req.params.id);
