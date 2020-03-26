@@ -20,6 +20,5 @@ Express, JavaScript, CSS
 
 ### Future Development
 - Log In authentication
-
-**Welcome Page**  
+  
 ![](/public/assets/notetaker.JPG)
